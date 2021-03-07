@@ -1,0 +1,51 @@
+[23-Feb-2021 23:06:09 Europe/Berlin] PHP Warning:  require(test.php): Failed to open stream: No such file or directory in /var/www/nginx/flomath/src/Controller/MainController.php on line 7
+[23-Feb-2021 23:34:04 Europe/Berlin] PHP Fatal error:  Uncaught UnhandledMatchError: Unhandled match value of type int in /var/www/nginx/flomath/public/index.php:15
+Stack trace:
+#0 {main}
+  thrown in /var/www/nginx/flomath/public/index.php on line 15
+[01-Mar-2021 22:08:39 Europe/Berlin] PHP Warning:  require(/var/www/nginx/flomath/SPDO.php): Failed to open stream: No such file or directory in /var/www/nginx/flomath/autoload.php on line 37
+[01-Mar-2021 22:08:48 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:16 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:17 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
+[01-Mar-2021 22:09:18 Europe/Berlin] PHP Fatal error:  Uncaught Error: Access to undeclared static property Core\SPDO::$pdo in /var/www/nginx/flomath/core/SPDO.php:31
+Stack trace:
+#0 /var/www/nginx/flomath/public/index.php(13): Core\SPDO::getPDO()
+#1 {main}
+  thrown in /var/www/nginx/flomath/core/SPDO.php on line 31
