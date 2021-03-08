@@ -6,7 +6,7 @@ use Core\CoreController;
 
 class ErrorController extends CoreController
 {
-    public function render404template()
+    public function error404()
     {
         header("HTTP/1.0 404 Not Found");
         $string = '<p>Erreur 404 - Page introuvable</p>';
