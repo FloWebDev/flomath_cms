@@ -3,18 +3,19 @@
 namespace App\Controller\FrontController;
 
 use App\Model\Post;
+use App\Model\User;
 use Core\CoreController;
 use Core\ErrorController;
+use DateTime;
 
 class PostController extends CoreController
 {
     public function list()
     {
-        $inst  = new Post();
-        $posts = $inst ->findAll();
-        echo '<pre>';
-        var_dump($posts);
-        echo '</pre>';
+        $inst    = new Post();
+        $posts   = $inst ->findAllPublished();
+        
+        $this->assign('posts', $posts);
         $this->render('pages/post/list');
     }
 

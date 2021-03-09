@@ -8,9 +8,10 @@ class User extends CoreModel
 {
     const TABLE_NAME = 'app_user';
     private $id;
-    private $login;
+    private $username;
     private $email;
     private $password;
+    private $role_id;
 
     /**
      * Get the value of id
@@ -33,21 +34,21 @@ class User extends CoreModel
     }
 
     /**
-     * Get the value of login
+     * Get the value of username
      */
-    public function getLogin()
+    public function getUsername()
     {
-        return $this->login;
+        return $this->username;
     }
 
     /**
-     * Set the value of login
+     * Set the value of username
      *
      * @return  self
      */
-    public function setLogin($login)
+    public function setLogin($username)
     {
-        $this->login = $login;
+        $this->username = $username;
 
         return $this;
     }
@@ -88,6 +89,26 @@ class User extends CoreModel
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of role_id
+     */
+    public function getRoleId()
+    {
+        return $this->role_id;
+    }
+
+    /**
+     * Set the value of role_id
+     *
+     * @return  self
+     */
+    public function setRoleId($role_id)
+    {
+        $this->role_id = $role_id;
 
         return $this;
     }

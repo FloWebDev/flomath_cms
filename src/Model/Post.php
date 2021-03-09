@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use ArrayObject;
+use Core\SPDO;
 use Core\CoreModel;
 
 class Post extends CoreModel
@@ -15,9 +17,41 @@ class Post extends CoreModel
     private $meta_description;
     private $meta_keywords;
     private $created_at;
-    private $updated_at;
-    private $published_at;
+    private $is_published;
     private $user_id;
+
+
+    /**
+     * Retourne la liste des posts publiés
+     */
+    public function findAllPublished(): ?array
+    {
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE is_published = 1 ORDER BY created_at DESC;";
+
+        $pdoStatement = SPDO::getPDO()->query($sql);
+
+        return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, self::class);
+    }
+
+    /**
+     * Retourne l'utilisateur
+     *
+     * @return User|null
+     */
+    public function getUser(): ?User
+    {
+        $inst = new User();
+        return $inst->findById($this->user_id);
+    }
+
+    /**
+     * Retourne une date de création formatée
+     */
+    public function getFormatedCreatedAt(): string
+    {
+        $date      = new \DateTime($this->created_at);
+        return $date->format('d/m/Y à H\hi');
+    }
 
     /**
      * Get the value of id
@@ -180,41 +214,21 @@ class Post extends CoreModel
     }
 
     /**
-     * Get the value of updated_at
+     * Get the value of is_published
      */
-    public function getUpdatedAt()
+    public function getIsPublished()
     {
-        return $this->updated_at;
+        return $this->is_published;
     }
 
     /**
-     * Set the value of updated_at
+     * Set the value of is_published
      *
      * @return  self
      */
-    public function setUpdatedAt($updatedAt)
+    public function setIsPublished($isPublished)
     {
-        $this->updated_at = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of published_at
-     */
-    public function getPublishedAt()
-    {
-        return $this->published_at;
-    }
-
-    /**
-     * Set the value of published_at
-     *
-     * @return  self
-     */
-    public function setPublishedAt($publishedAt)
-    {
-        $this->published_at = $publishedAt;
+        $this->is_published = $isPublished;
 
         return $this;
     }
