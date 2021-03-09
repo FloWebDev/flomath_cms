@@ -3,10 +3,8 @@
 namespace App\Controller\FrontController;
 
 use App\Model\Post;
-use App\Model\User;
 use Core\CoreController;
 use Core\ErrorController;
-use DateTime;
 
 class PostController extends CoreController
 {
@@ -14,7 +12,7 @@ class PostController extends CoreController
     {
         $inst    = new Post();
         $posts   = $inst ->findAllPublished();
-        
+
         $this->assign('posts', $posts);
         $this->render('pages/post/list');
     }
