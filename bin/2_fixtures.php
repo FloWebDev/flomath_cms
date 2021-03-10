@@ -38,23 +38,23 @@ $pdo->exec($sql);
 // Commentaires
 $sql = "
 INSERT INTO comment (id, username, email, content, created_at, thread, post_id)
-SELECT 1, 'Utilisateur 1', 'test@test.com', 'Commentaire 1', '2021-01-01 15:07:00', 1, 1
+SELECT 1, 'Utilisateur 1', 'test@test.com', 'Commentaire 1', '2021-01-01 15:07:00', 1, 7
 WHERE NOT EXISTS (SELECT 1 FROM comment WHERE id = 1);
 
 INSERT INTO comment (id, username, email, content, created_at, thread, post_id)
-SELECT 2, 'Utilisateur 2', 'test@test.com', 'Réponse 1 au commentaire 1', '2021-01-02 09:00:01', 1, 1
+SELECT 2, 'Utilisateur 2', 'test@test.com', 'Réponse 1 au commentaire 1', '2021-01-02 09:00:01', 1, 7
 WHERE NOT EXISTS (SELECT 1 FROM comment WHERE id = 2);
 
 INSERT INTO comment (id, username, email, content, created_at, thread, post_id)
-SELECT 3, 'Utilisateur 1', 'test@test.com', 'Réponse 2 au commentaire 1', '2021-01-02 12:00:17', 1, 1
+SELECT 3, 'Utilisateur 1', 'test@test.com', 'Réponse 2 au commentaire 1', '2021-01-02 12:00:17', 1, 7
 WHERE NOT EXISTS (SELECT 1 FROM comment WHERE id = 3);
 
 INSERT INTO comment (id, username, email, content, created_at, thread, post_id)
-SELECT 4, 'Utilisateur 1', 'test@test.com', 'Réponse 2 au commentaire 1', '2021-01-03 19:27:37', 1, 1
+SELECT 4, 'Utilisateur 1', 'test@test.com', 'Réponse 3 au commentaire 1', '2021-01-03 19:27:37', 1, 7
 WHERE NOT EXISTS (SELECT 1 FROM comment WHERE id = 4);
 
 INSERT INTO comment (id, username, email, content, created_at, thread, post_id)
-SELECT 5, 'Utilisateur 1', 'test@test.com', 'Commentaire 2', '2021-01-02 07:00:00', 1, 1
+SELECT 5, 'Utilisateur 1', 'test@test.com', 'Commentaire 2', '2021-01-02 07:00:00', 1, 7
 WHERE NOT EXISTS (SELECT 1 FROM comment WHERE id = 5);
 ";
 

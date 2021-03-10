@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Core\SPDO;
 use Core\CoreModel;
 
 class Tag extends CoreModel
@@ -10,6 +11,19 @@ class Tag extends CoreModel
     private $id;
     private $name;
 
+    public function findAllByPostId(int $id)
+    {
+        $sql          = "SELECT tag.* FROM " . self::TABLE_NAME . "
+            LEFT JOIN post_tag ON tag.id = post_tag.tag_id
+            WHERE post_tag.post_id = :id";
+        
+        $pdoStatement = SPDO::getPDO()->query($sql);
+        $pdoStatement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
+    
     /**
      * Get the value of id
      */

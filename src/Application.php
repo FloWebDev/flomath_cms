@@ -7,6 +7,8 @@ use Core\AltoRouter;
 use Core\ErrorController;
 use App\Controller\FrontController\PostController as FPC;
 use App\Controller\BackController\PostController as BPC;
+use App\Controller\FrontController\CategoryController as FCC;
+use App\Controller\FrontController\TagController as FTC;
 
 class Application
 {
@@ -41,11 +43,19 @@ class Application
         $this->router->map('GET', '/', function () {
             $inst = new FPC();
             $inst->list();
-        }, 'home-page');
-        $this->router->map('GET', '/post/[i:id]', function ($id) {
+        }, 'home_page');
+        $this->router->map('GET', '/post/[i:id]/[s:slug]', function ($id, $slug) {
             $inst = new FPC();
-            $inst->read($id);
+            $inst->read($id, $slug);
         }, 'single_post');
+        $this->router->map('GET', '/category/[i:id]', function ($id) {
+            $inst = new FCC();
+            $inst->postList($id);
+        }, 'category_post_list');
+        $this->router->map('GET', '/tag/[i:id]', function ($id) {
+            $inst = new FTC();
+            $inst->postList($id);
+        }, 'category_tag_list');
         // BackController
         $this->router->map('GET|POST', '/post-create', function () {
             $inst = new BPC();

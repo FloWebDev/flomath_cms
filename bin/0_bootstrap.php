@@ -11,4 +11,4 @@ if (!file_exists($databasePath)) {
 shell_exec('chown -R ' . $user. ':' . $group . ' ' . __DIR__ . '/../');
 shell_exec('chmod -R 775 ' . __DIR__ . '/../');
 shell_exec('chmod -R 775 ' . __DIR__ . '/../var/');
-echo shell_exec('ls -al');
+echo shell_exec('ls -al ' . __DIR__ . '/../');

@@ -20,6 +20,19 @@ class Post extends CoreModel
     private $is_published;
     private $user_id;
 
+    public function findByIdAndSlug(int $id, string $slug): Post | bool
+    {
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE id = :id AND slug = :slug;";
+
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
+
+        $pdoStatement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':slug', $slug, \PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchObject(static::class);
+    }
 
     /**
      * Retourne la liste des posts publiés
@@ -34,6 +47,18 @@ class Post extends CoreModel
     }
 
     /**
+     * Retourne le nombre de commentaire pour un post
+     */
+    public function getCommentCount()
+    {
+        $sql = "SELECT count(id) as nb FROM comment WHERE post_id = " . $this->id;
+
+        $pdoStatement = SPDO::getPDO()->query($sql);
+
+        return $pdoStatement->fetch(\PDO::FETCH_ASSOC)['nb'];
+    }
+
+    /**
      * Retourne l'utilisateur
      *
      * @return User|null
@@ -42,6 +67,24 @@ class Post extends CoreModel
     {
         $inst = new User();
         return $inst->findById($this->user_id);
+    }
+
+    /**
+     * Retourne la liste des catégories associées à un post
+     */
+    public function getCategories()
+    {
+        $inst = new Category();
+        return $inst->findAllByPostId($this->id);
+    }
+
+    /**
+     * Retourne la liste des tags associées à un post
+     */
+    public function getTags()
+    {
+        $inst = new Tag();
+        return $inst->findAllByPostId($this->id);
     }
 
     /**
