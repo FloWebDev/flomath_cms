@@ -2,6 +2,11 @@
 /**
  * @link https://www.sqlitetutorial.net/sqlite-create-table/
  */
+if (file_exists(__DIR__ . '/../config.php')) {
+    require __DIR__ . '/../config.php';
+} else {
+    require __DIR__ . '/../config-sample.php';
+}
 require __DIR__ . '/../core/SPDO.php';
 $pdo = \Core\SPDO::getPDO();
 $sql = "
@@ -16,6 +21,7 @@ CREATE TABLE IF NOT EXISTS app_user (
 	username TEXT NOT NULL UNIQUE,
 	email TEXT NOT NULL UNIQUE,
    password TEXT NOT NULL,
+   bio TEXT,
    role_id INTEGER,
    FOREIGN KEY (role_id) 
          REFERENCES role (id) 
@@ -33,6 +39,7 @@ CREATE TABLE IF NOT EXISTS post (
    meta_keywords TEXT,
    created_at TEXT NOT NULL,
    is_published INTEGER DEFAULT 0,
+   nb_views INTEGER DEFAULT 0,
    user_id INTEGER,
    FOREIGN KEY (user_id) 
         REFERENCES app_user (id) 
@@ -95,7 +102,8 @@ CREATE TABLE IF NOT EXISTS post_tag (
 ";
 $pdo->exec($sql);
 
-// Users
+// Users et Rôles
+$bio = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod quisquam laboriosam repellat neque quis nam! Itaque quisquam consequatur eveniet minus?";
 $sql = "
 INSERT INTO role (id, code, name)
 SELECT 1, 'ROLE_ADMIN', 'administrateur'
@@ -105,12 +113,12 @@ INSERT INTO role (id, code, name)
 SELECT 2, 'ROLE_USER', 'utilisateur'
 WHERE NOT EXISTS (SELECT 1 FROM role WHERE id = 2);
 
-INSERT INTO app_user (id, username, email, password, role_id)
-SELECT 1, 'admin', 'admin@admin.com', 'djshjdhfkddd12jqhf', 1
+INSERT INTO app_user (id, username, email, password, bio, role_id)
+SELECT 1, 'admin', 'admin@admin.com', 'djshjdhfkddd12jqhf', '$bio', 1
 WHERE NOT EXISTS (SELECT 1 FROM app_user WHERE id = 1);
 
-INSERT INTO app_user (id, username, email, password, role_id)
-SELECT 2, 'user', 'user@user.com', 'djsh4643fsddskjqhf', 2
+INSERT INTO app_user (id, username, email, password, bio, role_id)
+SELECT 2, 'user', 'user@user.com', 'djsh4643fsddskjqhf', '$bio', 2
 WHERE NOT EXISTS (SELECT 1 FROM app_user WHERE id = 2);
 ";
 $pdo->exec($sql);

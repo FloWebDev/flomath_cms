@@ -11,6 +11,7 @@ class User extends CoreModel
     private $username;
     private $email;
     private $password;
+    private $bio;
     private $role_id;
 
     /**
@@ -89,6 +90,26 @@ class User extends CoreModel
     public function setPassword($password)
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of bio
+     */
+    public function getBio()
+    {
+        return $this->bio;
+    }
+
+    /**
+     * Set the value of bio
+     *
+     * @return  self
+     */
+    public function setBio($bio)
+    {
+        $this->bio = $bio;
 
         return $this;
     }

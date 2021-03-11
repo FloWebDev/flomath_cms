@@ -5,6 +5,7 @@ namespace App\Controller\FrontController;
 use App\Model\Post;
 use Core\CoreController;
 use Core\ErrorController;
+use Core\UtilCore;
 
 class PostController extends CoreController
 {
@@ -38,6 +39,14 @@ class PostController extends CoreController
             $inst->error404();
         }
 
+        $categories                   = $post->getCategories();
+        $tags                         = $post->getTags();
+        $avatar                       = UtilCore::getGravatar($post->getUser()->getEmail(), 120, 'mp', 'g', true, ['title' => $post->getUser()->getUsername(), 'alt' => 'Avatar de ' . $post->getUser()->getUsername(), 'class' => 'card-img-top avatar']);
+
+        $this->assign('post', $post);
+        $this->assign('categories', $categories);
+        $this->assign('tags', $tags);
+        $this->assign('avatar', $avatar);
         $this->render('pages/post/single');
     }
 }

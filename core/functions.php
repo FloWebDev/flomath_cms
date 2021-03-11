@@ -29,3 +29,11 @@ function handlePluralWithS(string $word, int $int): string
     $word = $int > 1 ? $word . 's' : $word;
     return $word;
 }
+
+/**
+ * retourne la valeur de $_SERVER['REQUEST_URI']
+ */
+function getUri(): string
+{
+    return isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+}

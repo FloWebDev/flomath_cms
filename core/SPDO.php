@@ -12,15 +12,17 @@ class SPDO
     {
         try {
             self::$_pdo = new \PDO('sqlite:' . __DIR__ .'/../var/data.db', null, null, [
-                \PDO::ATTR_ERRMODE            => \PDO::ERRMODE_WARNING,
+                \PDO::ATTR_ERRMODE            => MODE === 'dev' ? \PDO::ERRMODE_WARNING : \PDO::ERRMODE_SILENT,
                 \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC
     
             ]);
             self::$_pdo->exec('PRAGMA foreign_keys = ON;');
         } catch (\PDOException $e) {
-            echo '<pre>';
-            echo $e->getMessage();
-            echo '</pre>';
+            if (MODE === 'dev') {
+                echo '<pre>';
+                echo $e->getMessage();
+                echo '</pre>';
+            }
             Logger::error($e->getMessage());
             Logger::error($e->getTraceAsString());
         }

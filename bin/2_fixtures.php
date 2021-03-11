@@ -2,34 +2,36 @@
 
 require __DIR__ . '/1_init_data.php';
 
+$contentMock = 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate, quod. Quibusdam cum, nulla, labore modi enim dolorem odio aliquam illo quaerat blanditiis accusamus tempora soluta magnam maxime culpa quia voluptatum iste optio velit perferendis officiis? Minima nostrum ex non adipisci! Eaque minus architecto perspiciatis porro! In modi deleniti odit, saepe iusto quod dolores asperiores quis assumenda dolorem a architecto accusamus voluptatem cupiditate quasi dolor! Voluptatibus officia fuga aperiam voluptatem mollitia quam rem illo. Placeat aliquid quisquam nobis quo nemo, reiciendis dignissimos debitis neque cumque et sed commodi odio? Ex, aperiam! Quos assumenda id repellat saepe nisi, facilis iste aspernatur tenetur ipsa, quibusdam voluptatibus sint hic rerum, consequuntur tempore mollitia adipisci neque vero magni explicabo provident. Necessitatibus mollitia, cumque quae voluptas optio expedita deleniti consectetur atque eos totam libero maxime ipsam exercitationem quos quasi molestiae sequi ad tempora saepe quod, ullam error. Voluptatem ratione quaerat sed corrupti repellat fuga, delectus pariatur sequi necessitatibus, veniam voluptate vitae! Consequatur alias repellendus illo dolorum nisi iusto. Veniam fugiat sunt atque officia sed minus impedit doloremque, repellat sapiente magnam ut qui? At inventore quibusdam tenetur saepe consectetur, fugit exercitationem expedita eveniet ducimus molestias aspernatur voluptatum quasi eligendi voluptate reprehenderit consequatur beatae culpa velit veniam dolores id. Hic reprehenderit non, tenetur dicta sapiente in! Beatae quia officia cum aliquam! Aliquam, iure? Aut quis quas fugiat a similique amet illo quia sunt odio, reiciendis beatae quisquam neque debitis quam est, obcaecati maxime voluptatum velit praesentium voluptates earum ullam? Debitis reiciendis natus vel explicabo ut iusto nesciunt voluptatum iure ex quia soluta itaque excepturi optio sunt esse quisquam quis voluptates incidunt, a praesentium hic earum doloremque. Praesentium distinctio quis a consectetur aut sint commodi ex fugiat, adipisci ducimus odio odit cumque repellendus eveniet doloremque mollitia error impedit numquam esse officiis eos deserunt recusandae. Cumque ab recusandae soluta accusamus eius hic quasi similique, quidem tempora accusantium nesciunt veritatis blanditiis distinctio explicabo neque cupiditate, repellendus magni deleniti modi consectetur vel iure adipisci autem amet. Illum voluptatibus modi velit eius consequuntur dicta recusandae optio ratione corporis cupiditate quasi unde voluptatem repellat, excepturi, quisquam temporibus nobis facilis magnam? Iste et sequi dolor sapiente itaque, deserunt eum rem facere ipsa, suscipit asperiores quis animi. Doloremque cum iste quo omnis repudiandae asperiores, esse, tenetur officiis culpa ut dolores. Aperiam, ipsum corporis? Eius aut tenetur culpa iusto facere odit voluptatem eaque perferendis. Quo enim ad ipsa expedita nulla. Reprehenderit dolor numquam iure eos corporis illo repellat, ducimus sit enim assumenda laboriosam repellendus delectus facere soluta sint porro itaque earum autem eius impedit saepe, beatae officia architecto provident. Praesentium alias odit ducimus quis veniam, nam ab quae vero maiores, iure magni distinctio omnis reprehenderit minus voluptatum necessitatibus enim numquam blanditiis error quam facere! Fugiat sed ducimus modi voluptas a doloremque mollitia sint alias facilis est expedita, nihil omnis vel ea? Sed ex, labore quos dignissimos numquam recusandae nam beatae iusto sint hic nobis quibusdam quo laborum eaque atque facilis, animi consequuntur cum blanditiis repudiandae. Reiciendis exercitationem deleniti quam, mollitia numquam in. Et eligendi animi libero a!';
+
 // Posts
 $sql = "
 INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
-SELECT 1, 'Article Exemple 1', 'Voici le contenu du premier article.', 'Description 1', 'slug-article-1', '2021-01-01 12:00:57', 1, 1
+SELECT 1, 'Article Exemple 1', '$contentMock', 'Description 1', 'slug-article-1', '2021-01-01 12:00:57', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 1);
 
 INSERT INTO post (id, title, content, slug, created_at, is_published, user_id)
-SELECT 2, 'Article Exemple 2', 'Voici le contenu du second article.', 'slug-article-2', '2021-01-02 12:00:17', 1, 1
+SELECT 2, 'Article Exemple 2', '$contentMock', 'slug-article-2', '2021-01-02 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 2);
 
 INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
-SELECT 3, 'Article Exemple 3', 'Voici le contenu du troisième article.', 'Description 3', 'slug-article-3', '2021-01-03 12:00:17', 1, 1
+SELECT 3, 'Article Exemple 3', '$contentMock', 'Description 3', 'slug-article-3', '2021-01-03 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 3);
 
 INSERT INTO post (id, title, content, slug, created_at, is_published, user_id)
-SELECT 4, 'Article Exemple 4', 'Voici le contenu du quatrième article.', 'slug-article-4', '2021-01-04 12:00:17', 1, 1
+SELECT 4, 'Article Exemple 4', '$contentMock', 'slug-article-4', '2021-01-04 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 4);
 
 INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
-SELECT 5, 'Article Exemple 5', 'Voici le contenu du cinquième article.', 'Description 5', 'slug-article-5', '2021-01-05 12:00:17', 1, 1
+SELECT 5, 'Article Exemple 5', '$contentMock', 'Description 5', 'slug-article-5', '2021-01-05 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 5);
 
 INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
-SELECT 6, 'Article Exemple 6', 'Voici le contenu du sixième article.', 'Description 6', 'slug-article-6', '2021-01-06 12:00:17', 1, 1
+SELECT 6, 'Article Exemple 6', '$contentMock', 'Description 6', 'slug-article-6', '2021-01-06 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 6);
 
 INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
-SELECT 7, 'Article Exemple 7', 'Voici le contenu du septième article.', 'Description 7', 'slug-article-7', '2021-01-07 12:00:17', 1, 1
+SELECT 7, 'Article Exemple 7', '$contentMock', 'Description 7', 'slug-article-7', '2021-01-07 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 7);
 ";
 

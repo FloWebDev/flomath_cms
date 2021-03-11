@@ -18,6 +18,7 @@ class Post extends CoreModel
     private $meta_keywords;
     private $created_at;
     private $is_published;
+    private $nb_views;
     private $user_id;
 
     public function findByIdAndSlug(int $id, string $slug): Post | bool
@@ -272,6 +273,27 @@ class Post extends CoreModel
     public function setIsPublished($isPublished)
     {
         $this->is_published = $isPublished;
+
+        return $this;
+    }
+
+
+    /**
+     * Get the value of nb_views
+     */
+    public function getNbViews()
+    {
+        return $this->nb_views;
+    }
+
+    /**
+     * Set the value of nb_views
+     *
+     * @return  self
+     */
+    public function setNbViews($nbViews)
+    {
+        $this->nb_views = $nbViews;
 
         return $this;
     }

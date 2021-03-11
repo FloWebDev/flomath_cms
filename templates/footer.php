@@ -32,18 +32,18 @@
             </a>
           </li>
         </ul>
-        <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
+        <p class="copyright text-muted">Développé avec ❤️ et ☕ par Florian Mathevon - FloMath 2021-<?= date('Y'); ?></p>
       </div>
     </div>
   </div>
 </footer>
 
 <!-- Bootstrap core JavaScript -->
-<script src="assets/js/jquery/jquery.min.js"></script>
-<script src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/jquery/jquery.min.js"></script>
+<script src="/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
 
 <!-- Custom scripts for this template -->
-<script src="assets/js/clean-blog/clean-blog.min.js"></script>
+<script src="/assets/js/clean-blog/clean-blog.min.js"></script>
 
 </body>
 
