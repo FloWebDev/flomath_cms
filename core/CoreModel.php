@@ -2,6 +2,7 @@
 namespace Core;
 
 use Core\SPDO;
+use DateTime;
 
 abstract class CoreModel
 {
@@ -25,5 +26,11 @@ abstract class CoreModel
         $pdoStatement->execute();
 
         return $pdoStatement->fetchObject(static::class);
+    }
+
+    public function getFormattedDate(string $date): string
+    {
+        $date = new DateTime($date);
+        return $date->format(FORMAT_DATE_GET);
     }
 }

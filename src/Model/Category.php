@@ -17,7 +17,7 @@ class Category extends CoreModel
             LEFT JOIN post_category ON category.id = post_category.category_id
             WHERE post_category.post_id = :id";
         
-        $pdoStatement = SPDO::getPDO()->query($sql);
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
         $pdoStatement->bindValue(':id', $id, \PDO::PARAM_INT);
         $pdoStatement->execute();
 

@@ -17,7 +17,7 @@ class Tag extends CoreModel
             LEFT JOIN post_tag ON tag.id = post_tag.tag_id
             WHERE post_tag.post_id = :id";
         
-        $pdoStatement = SPDO::getPDO()->query($sql);
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
         $pdoStatement->bindValue(':id', $id, \PDO::PARAM_INT);
         $pdoStatement->execute();
 

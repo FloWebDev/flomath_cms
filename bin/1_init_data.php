@@ -53,7 +53,6 @@ CREATE TABLE IF NOT EXISTS comment (
    email TEXT,
    content TEXT NOT NULL,
    created_at TEXT,
-   thread INTEGER NOT NULL,
    post_id INTEGER,
    FOREIGN KEY (post_id) 
         REFERENCES post (id) 

@@ -14,3 +14,29 @@
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
 }
+
+#bio-author,
+#comment-form {
+    font-size: 17px;
+}
+
+.comment-name {
+    color: #007bff
+}
+
+.comment-date {
+    font-size: 17px;
+}
+
+.comment-text {
+    font-size: 17px;
+}
+
+#emailHelp {
+    font-size: 10px;
+}
+
+.require {
+    color: red;
+    font-weight: bold;
+}

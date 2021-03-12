@@ -13,18 +13,7 @@ class PostController extends CoreController
     {
         $inst         = new Post();
         $posts        = $inst ->findAllPublished();
-        $categories   = [];
-        $tags         = [];
-        $commentCount = [];
-        foreach ($posts as $post) {
-            $categories[$post->getId()]   = $post->getCategories();
-            $tags[$post->getId()]         = $post->getTags();
-            $commentCount[$post->getId()] = $post->getCommentCount();
-        }
 
-        $this->assign('categories', $categories);
-        $this->assign('tags', $tags);
-        $this->assign('commentCount', $commentCount);
         $this->assign('posts', $posts);
         $this->render('pages/post/list');
     }
@@ -39,14 +28,15 @@ class PostController extends CoreController
             $inst->error404();
         }
 
-        $categories                   = $post->getCategories();
-        $tags                         = $post->getTags();
-        $avatar                       = UtilCore::getGravatar($post->getUser()->getEmail(), 120, 'mp', 'g', true, ['title' => $post->getUser()->getUsername(), 'alt' => 'Avatar de ' . $post->getUser()->getUsername(), 'class' => 'card-img-top avatar']);
+        $post->setNbViews($post->getNbViews() + 1);
+        $post->save();
 
+        $avatar = UtilCore::getGravatar('$post->getUser()->getEmail()', 120, 'mp', 'g', true, ['title' => $post->getUser()->getUsername(), 'alt' => 'Avatar de ' . $post->getUser()->getUsername(), 'class' => 'card-img-top avatar']);
+  
         $this->assign('post', $post);
-        $this->assign('categories', $categories);
-        $this->assign('tags', $tags);
         $this->assign('avatar', $avatar);
+        $this->assign('commentActivated', COMMENT_ACTIVATED);
+        $this->assign('comments', $post->getComments());
         $this->render('pages/post/single');
     }
 }

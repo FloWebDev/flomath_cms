@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Core\SPDO;
 use App\Model\Post;
 use Core\CoreModel;
 
@@ -13,9 +14,19 @@ class Comment extends CoreModel
     private $email;
     private $content;
     private $created_at;
-    private $thread;
     private $post_id;
 
+    public function getCommentsById(int $id)
+    {
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE post_id = :post_id
+        ORDER BY created_at DESC";
+    
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
+        $pdoStatement->bindValue(':post_id', $id, \PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
 
     /**
      * Retourne le post associé
@@ -124,26 +135,6 @@ class Comment extends CoreModel
     public function setCreatedAt($createdAt)
     {
         $this->created_at = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of thread
-     */
-    public function getThread()
-    {
-        return $this->thread;
-    }
-
-    /**
-     * Set the value of thread
-     *
-     * @return  self
-     */
-    public function setThread($thread)
-    {
-        $this->thread = $thread;
 
         return $this;
     }

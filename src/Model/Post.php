@@ -2,9 +2,9 @@
 
 namespace App\Model;
 
-use ArrayObject;
 use Core\SPDO;
 use Core\CoreModel;
+use DateTime;
 
 class Post extends CoreModel
 {
@@ -21,6 +21,10 @@ class Post extends CoreModel
     private $nb_views;
     private $user_id;
 
+    public function __construct()
+    {
+    }
+    
     public function findByIdAndSlug(int $id, string $slug): Post | bool
     {
         $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE id = :id AND slug = :slug;";
@@ -33,6 +37,36 @@ class Post extends CoreModel
         $pdoStatement->execute();
 
         return $pdoStatement->fetchObject(static::class);
+    }
+
+    public function save()
+    {
+        if (is_null($this->id)) {
+            $sql = "INSERT INTO " . self::TABLE_NAME . " (title, content, description, slug, meta_description, meta_keywords, created_at, is_published, nb_views, user_id) 
+            VALUES (:title, :content, :description, :slug, :meta_description, :meta_keywords, :created_at, :is_published, :nb_views, :user_id)";
+            // Valeurs par défaut
+            $date               = new DateTime();
+            $this->created_at   = $date->format('Y-m-d H:i:s.u');
+            $this->nb_views     = 0;
+        } else {
+            $sql = "UPDATE " . self::TABLE_NAME . " SET title = :title, content= :content, description = :description, slug = :slug, meta_description = :meta_description, meta_keywords = :meta_keywords,
+             created_at = :created_at, is_published = :is_published, nb_views = :nb_views, user_id = :user_id WHERE id = " . $this->id;
+        }
+
+        $pdoStatement =SPDO::getPDO()->prepare($sql);
+        $pdoStatement->bindValue(':title', $this->getTitle(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':content', $this->getContent(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':description', $this->getDescription(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':slug', $this->getSlug(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':meta_description', $this->getMetaDescription(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':meta_keywords', $this->getMetaKeywords(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':created_at', $this->getCreatedAt(), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':is_published', $this->getIsPublished(), \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':nb_views', $this->getNbViews(), \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':user_id', $this->getUserId(), \PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        return $this;
     }
 
     /**
@@ -48,15 +82,21 @@ class Post extends CoreModel
     }
 
     /**
-     * Retourne le nombre de commentaire pour un post
+     * Retourne le nombre de commentaires pour un post
      */
-    public function getCommentCount()
+    public function getCommentsCount()
     {
         $sql = "SELECT count(id) as nb FROM comment WHERE post_id = " . $this->id;
 
         $pdoStatement = SPDO::getPDO()->query($sql);
 
         return $pdoStatement->fetch(\PDO::FETCH_ASSOC)['nb'];
+    }
+
+    public function getComments()
+    {
+        $inst = new Comment();
+        return $inst->getCommentsById($this->id);
     }
 
     /**
@@ -86,15 +126,6 @@ class Post extends CoreModel
     {
         $inst = new Tag();
         return $inst->findAllByPostId($this->id);
-    }
-
-    /**
-     * Retourne une date de création formatée
-     */
-    public function getFormatedCreatedAt(): string
-    {
-        $date      = new \DateTime($this->created_at);
-        return $date->format('d/m/Y à H\hi');
     }
 
     /**
@@ -270,8 +301,10 @@ class Post extends CoreModel
      *
      * @return  self
      */
-    public function setIsPublished($isPublished)
+    public function setIsPublished(int $isPublished)
     {
+        $isPublished = $isPublished === 1 ? $isPublished : 0;
+        
         $this->is_published = $isPublished;
 
         return $this;
@@ -291,7 +324,7 @@ class Post extends CoreModel
      *
      * @return  self
      */
-    public function setNbViews($nbViews)
+    public function setNbViews(int $nbViews)
     {
         $this->nb_views = $nbViews;
 
