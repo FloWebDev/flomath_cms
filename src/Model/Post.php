@@ -53,16 +53,16 @@ class Post extends CoreModel
         }
 
         $pdoStatement =SPDO::getPDO()->prepare($sql);
-        $pdoStatement->bindValue(':title', $this->getTitle(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':content', $this->getContent(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':description', $this->getDescription(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':slug', $this->getSlug(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':meta_description', $this->getMetaDescription(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':meta_keywords', $this->getMetaKeywords(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':created_at', $this->getCreatedAt(), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':is_published', $this->getIsPublished(), \PDO::PARAM_INT);
-        $pdoStatement->bindValue(':nb_views', $this->getNbViews(), \PDO::PARAM_INT);
-        $pdoStatement->bindValue(':user_id', $this->getUserId(), \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':title', htmlspecialchars($this->getTitle()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':content', htmlspecialchars($this->getContent()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':description', htmlspecialchars($this->getDescription()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':slug', htmlspecialchars($this->getSlug()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':meta_description', htmlspecialchars($this->getMetaDescription()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':meta_keywords', htmlspecialchars($this->getMetaKeywords()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':created_at', htmlspecialchars($this->getCreatedAt()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':is_published', intval($this->getIsPublished()), \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':nb_views', intval($this->getNbViews()), \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':user_id', intval($this->getUserId()), \PDO::PARAM_INT);
         $pdoStatement->execute();
 
         return $this;

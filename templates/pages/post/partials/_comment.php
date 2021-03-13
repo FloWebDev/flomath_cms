@@ -36,7 +36,7 @@
                 <div class="d-flex flex-column comment-section">
                     <?php foreach ($comments as $comment): ?>
                         <div class="bg-white p-2">
-                            <div class="d-flex flex-row user-info"><img class="rounded-circle" src="https://i.imgur.com/RpzrMR2.jpg" width="50">
+                            <div class="d-flex flex-row user-info"><img class="rounded-circle" src="<?= getGravatar($comment->getEmail()); ?>" width="50">
                                 <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold comment-name"><?= $comment->getUsername(); ?></span><span class="comment-date text-black-50">Partagé le <?= $comment->getFormattedDate($comment->getCreatedAt()); ?></span></div>
                             </div>
                             <div class="mt-2">
