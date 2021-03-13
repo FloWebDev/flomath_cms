@@ -28,6 +28,30 @@ class Comment extends CoreModel
         return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
+    public function save()
+    {
+        if (is_null($this->id)) {
+            $sql = "INSERT INTO " . self::TABLE_NAME . " (username, email, content, created_at, post_id) 
+            VALUES (:username, :email, :content, :created_at, :post_id)";
+            // Valeurs par défaut
+            $date               = new \DateTime();
+            $this->created_at   = $date->format('Y-m-d H:i:s.u');
+        } else {
+            $sql = "UPDATE " . self::TABLE_NAME . " SET username = :username, email= :email, content = :content, created_at = :created_at, post_id = :post_id 
+            WHERE id = " . $this->id;
+        }
+
+        $pdoStatement =SPDO::getPDO()->prepare($sql);
+        $pdoStatement->bindValue(':username', htmlspecialchars($this->getUsername()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':email', htmlspecialchars($this->getEmail()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':content', htmlspecialchars($this->getContent()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':created_at', htmlspecialchars($this->getCreatedAt()), \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':post_id', intval($this->getPostId()), \PDO::PARAM_INT);
+        $pdoStatement->execute();
+
+        return $this;
+    }
+
     /**
      * Retourne le post associé
      *

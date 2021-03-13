@@ -6,7 +6,7 @@ use Core\CoreController;
 
 class CategoryController extends CoreController
 {
-    public function postList(int $id)
+    public function categoryList(int $id)
     {
         echo 'Liste des articles pour la catégorie : ' . $id;
         exit;

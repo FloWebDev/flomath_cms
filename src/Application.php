@@ -9,6 +9,7 @@ use App\Controller\FrontController\PostController as FPC;
 use App\Controller\BackController\PostController as BPC;
 use App\Controller\FrontController\CategoryController as FCC;
 use App\Controller\FrontController\TagController as FTC;
+use App\Controller\FrontController\CommentController as FCoC;
 
 class Application
 {
@@ -50,12 +51,16 @@ class Application
         }, 'single_post');
         $this->router->map('GET', '/category/[i:id]', function ($id) {
             $inst = new FCC();
-            $inst->postList($id);
+            $inst->categoryList($id);
         }, 'category_post_list');
         $this->router->map('GET', '/tag/[i:id]', function ($id) {
             $inst = new FTC();
-            $inst->postList($id);
+            $inst->tagList($id);
         }, 'category_tag_list');
+        $this->router->map('POST', '/comment-create', function () {
+            $inst = new FCoC();
+            $inst->create();
+        }, 'comment_create');
         // BackController
         $this->router->map('GET|POST', '/post-create', function () {
             $inst = new BPC();

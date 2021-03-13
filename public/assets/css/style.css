@@ -16,7 +16,8 @@
 }
 
 #bio-author,
-#comment-form {
+#comment-form,
+#comment-flash-messages {
     font-size: 17px;
 }
 

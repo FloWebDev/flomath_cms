@@ -4,7 +4,6 @@ namespace App\Model;
 
 use Core\SPDO;
 use Core\CoreModel;
-use DateTime;
 
 class Post extends CoreModel
 {
@@ -45,7 +44,7 @@ class Post extends CoreModel
             $sql = "INSERT INTO " . self::TABLE_NAME . " (title, content, description, slug, meta_description, meta_keywords, created_at, is_published, nb_views, user_id) 
             VALUES (:title, :content, :description, :slug, :meta_description, :meta_keywords, :created_at, :is_published, :nb_views, :user_id)";
             // Valeurs par défaut
-            $date               = new DateTime();
+            $date               = new \DateTime();
             $this->created_at   = $date->format('Y-m-d H:i:s.u');
             $this->nb_views     = 0;
         } else {
