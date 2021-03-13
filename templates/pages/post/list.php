@@ -35,9 +35,7 @@
             <hr>
             <?php endforeach; ?>
             <!-- Pager -->
-            <div class="clearfix">
-              <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-            </div>
+            <?= $paginatorTemplate; ?>
         <?php else: ?>
           <div class="post-preview">
             Aucun élément à afficher.

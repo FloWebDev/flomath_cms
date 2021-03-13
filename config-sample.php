@@ -16,3 +16,6 @@ define('COMMENT_ACTIVATED', true);
 define('FORMAT_DATE_SET', 'Y-m-d H:i:s.u');
 define('FORMAT_DATE_GET', 'd/m/Y à H\hi');
 define('EMAIL_INFO', 'Votre adresse email ne sera ni revendue ni communiquée à des tiers.');
+
+define('PAGINATOR_PAGE_RANGE', 3);
+define('PAGINATOR_PAGE_NAME', 'page');
