@@ -19,10 +19,6 @@ class Post extends CoreModel
     private $is_published;
     private $nb_views;
     private $user_id;
-
-    public function __construct()
-    {
-    }
     
     public function findByIdAndSlug(int $id, string $slug): Post | bool
     {
@@ -126,6 +122,8 @@ class Post extends CoreModel
         $inst = new Tag();
         return $inst->findAllByPostId($this->id);
     }
+
+    // Getters / Setters
 
     /**
      * Get the value of id

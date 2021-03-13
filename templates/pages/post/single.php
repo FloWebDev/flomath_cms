@@ -18,16 +18,16 @@
 
           <!-- Section auteur -->
           <div class="row" id="bio-author">
-            <div class="col-3 align-self-center">
-                <?= $avatar; ?>
+            <div class="col-2 align-self-center">
+                <?= getGravatar($post->getUser()->getEmail(), 100, 'mp', 'g', true, ['title' => $post->getUser()->getUsername(), 'alt' => 'Avatar de ' . $post->getUser()->getUsername(), 'class' => 'card-img-top avatar']); ?>
             </div>
-            <div class="col-9 card-body">
+            <div class="col-10 card-body">
                 <h5 class="card-title"><?= $post->getUser()->getUsername(); ?></h5>
                 <p class="card-text"><?= $post->getUser()->getBio(); ?></p>
             </div>
         </div>
 
-        <?php if (!empty($commentActivated)): ?>
+        <?php if (COMMENT_ACTIVATED): ?>
           <hr>
           <?php require __DIR__ . '/partials/_comment.php' ?>
         <?php endif; ?>

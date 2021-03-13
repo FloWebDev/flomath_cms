@@ -45,7 +45,7 @@
 <script src="/assets/js/clean-blog/clean-blog.min.js"></script>
 
 <!-- Custom script for FloMath template -->
-<script src="/assets/js/app.js"></script>
+<script src="/assets/js/app.js?v=<?= ASSETS_VERSION; ?>"></script>
 
 </body>
 

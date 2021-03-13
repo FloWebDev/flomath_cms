@@ -2,38 +2,47 @@
 
 namespace App\Controller\FrontController;
 
-use App\Model\Comment;
-use Core\CoreController;
 use DateTime;
+use App\Model\Post;
+use App\Model\Comment;
+use Core\CaptchaService;
+use Core\CoreController;
 
 class CommentController extends CoreController
 {
-    public function create()
+    public function create(int $idPost)
     {
         $error = [];
+
+        $post = new Post();
+        $post = $post->findById($idPost);
+
+        // Handle form
+        $postId = $post ? $post->getId() : null;
+        if (is_null($postId)) {
+            $error[] = 'Référence manquante ou introuvable';
+        }
         $email = !empty(trim($_POST['email'])) ? filter_var(trim($_POST['email']), FILTER_VALIDATE_EMAIL) : null;
-        if (is_null($email)) {
+        if (!$email) {
             $error[] = 'Adresse email manquante ou erronée';
         }
         $username = !empty(trim($_POST['username'])) ? trim($_POST['username']) : null;
-        if (is_null($username) || strlen($username) > 40) {
+        if (!$username || strlen($username) > 40) {
             $error[] = 'Pseudo manquant ou comportant trop de caractères';
         }
         $content = !empty(trim($_POST['content'])) ? trim($_POST['content']) : null;
-        if (is_null($content) || strlen($content) > 10000) {
+        if (!$content || strlen($content) > 10000) {
             $error[] = 'Commentaire manquant ou comportant trop de caractères';
         }
-        $postId = !empty($_POST['postId']) ? intval($_POST['postId']) : null;
-        if (is_null($postId)) {
-            $error[] = 'Référence au post manquante';
+        $captcha = !empty($_POST['username']) ? CaptchaService::check(intval($_POST['captcha'])) : false;
+        if (!$captcha) {
+            $error[] = 'Captcha incorrect';
         }
 
         if (!empty($error)) {
-            header("HTTP/1.0 404 Bad Request");
-            header('Content-type: application/json');
-            echo json_encode($error);
-            exit;
+            self::json400Render($error);
         }
+
         $comment = new Comment();
         $comment->setEmail($email);
         $comment->setUsername($username);
@@ -41,9 +50,6 @@ class CommentController extends CoreController
         $comment->setPostId($postId);
         $comment->save();
 
-        header("HTTP/1.0 201 Created");
-        header('Content-type: application/json');
-        echo json_encode(['code' => 201, 'success' => true, 'message' => 'Commentaire créé avec succès']);
-        exit;
+        self::json201Render(['code' => 201, 'success' => true, 'message' => 'Commentaire créé avec succès']);
     }
 }

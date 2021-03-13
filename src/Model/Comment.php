@@ -63,6 +63,8 @@ class Comment extends CoreModel
         return $inst->findById($this->post_id);
     }
 
+    // Getters / Setters
+    
     /**
      * Get the value of id
      */

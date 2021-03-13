@@ -2,10 +2,11 @@
 
 namespace App\Controller\FrontController;
 
+use Core\UtilCore;
 use App\Model\Post;
+use Core\CaptchaService;
 use Core\CoreController;
 use Core\ErrorController;
-use Core\UtilCore;
 
 class PostController extends CoreController
 {
@@ -20,23 +21,24 @@ class PostController extends CoreController
 
     public function read(int $id, string $slug)
     {
-        $inst  = new Post();
-        $post  = $inst ->findByIdAndSlug($id, $slug);
+        $captcha = CaptchaService::generateCaptcha();
+
+        $post    = new Post();
+        $post    = $post->findByIdAndSlug($id, $slug);
 
         if (!$post) {
-            $inst = new ErrorController();
-            $inst->error404();
+            ErrorController::view404Render();
         }
 
         $post->setNbViews($post->getNbViews() + 1);
         $post->save();
-
-        $avatar = UtilCore::getGravatar('$post->getUser()->getEmail()', 120, 'mp', 'g', true, ['title' => $post->getUser()->getUsername(), 'alt' => 'Avatar de ' . $post->getUser()->getUsername(), 'class' => 'card-img-top avatar']);
   
         $this->assign('post', $post);
-        $this->assign('avatar', $avatar);
-        $this->assign('commentActivated', COMMENT_ACTIVATED);
+        $this->assign('captcha', $captcha);
         $this->assign('comments', $post->getComments());
+        $this->assign('description', $post->getMetaDescription());
+        $this->assign('keywords', $post->getMetaKeywords());
+        $this->assign('author', $post->getUser()->getUsername());
         $this->render('pages/post/single');
     }
 }

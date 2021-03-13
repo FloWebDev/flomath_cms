@@ -24,6 +24,8 @@ class Category extends CoreModel
         return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, static::class);
     }
 
+    // Getters / Setters
+
     /**
      * Get the value of id
      */

@@ -31,7 +31,7 @@
   <link href="/assets/css/clean-blog/clean-blog.min.css" rel="stylesheet">
 
   <!-- Custom style for FloMath template -->
-<link href="/assets/css/style.css" rel="stylesheet">
+<link href="/assets/css/style.css?v=<?= ASSETS_VERSION; ?>" rel="stylesheet">
 
 </head>
 

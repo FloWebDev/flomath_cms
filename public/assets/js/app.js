@@ -12,7 +12,8 @@ const app = {
         var xhr = new XMLHttpRequest();
         var data = new FormData(e.target);
 
-        xhr.open("POST", e.target.getAttribute('action'), true);
+        xhr.open('POST', e.target.getAttribute('action'), true);
+        xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
         xhr.onreadystatechange = () => {
             if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300) {
@@ -20,6 +21,9 @@ const app = {
                     if (res.success) {
                         e.target.reset();
                         app.handleSuccessCommentForm(res);
+                        setTimeout(() => {
+                            document.location.reload();
+                        }, 3000);
                     }
                 } else {
                     app.handleErrorCommentForm(JSON.parse(xhr.response));

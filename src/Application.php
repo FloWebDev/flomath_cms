@@ -1,7 +1,7 @@
 <?php
-
 namespace App;
 
+session_start();
 use Core\Logger;
 use Core\AltoRouter;
 use Core\ErrorController;
@@ -30,8 +30,11 @@ class Application
         if (is_array($match) && is_callable($match['target'])) {
             call_user_func_array($match['target'], $match['params']);
         } else {
-            $inst = new ErrorController();
-            $inst->error404();
+            if (isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
+                ErrorController::json404Render(['code' => 404, 'success' => false, 'message' => 'Not Found']);
+            } else {
+                ErrorController::view404Render();
+            }
         }
     }
 
@@ -57,9 +60,9 @@ class Application
             $inst = new FTC();
             $inst->tagList($id);
         }, 'category_tag_list');
-        $this->router->map('POST', '/comment-create', function () {
+        $this->router->map('POST', '/post/[i:id]/comment-create', function ($id) {
             $inst = new FCoC();
-            $inst->create();
+            $inst->create($id);
         }, 'comment_create');
         // BackController
         $this->router->map('GET|POST', '/post-create', function () {

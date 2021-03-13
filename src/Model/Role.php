@@ -11,6 +11,8 @@ class Role extends CoreModel
     private $code;
     private $name;
 
+    // Getters / Setters
+
     /**
      * Get the value of id
      */

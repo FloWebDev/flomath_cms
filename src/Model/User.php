@@ -14,6 +14,9 @@ class User extends CoreModel
     private $bio;
     private $role_id;
 
+    
+    // Getters / Setters
+        
     /**
      * Get the value of id
      */

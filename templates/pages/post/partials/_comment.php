@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center row">
         <div class="col-12">
 
-            <form class="bg-light p-2" id="comment-form" action="/comment-create" method="POST">
+            <form class="bg-light p-2" id="comment-form" action="/post/<?= $post->getId() ?>/comment-create" method="POST">
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email <span class="require">*</span></label>
                             <div class="col-sm-9">
@@ -20,8 +20,17 @@
                             <label for="content">Commentaire <span class="require">*</span></label>
                             <textarea class="form-control" id="content" rows="3" name="content"></textarea>
                         </div>
-                        <input type="hidden" name="postId" value="<?= $post->getId() ?>">
-                        <div class="mt-2 text-right"><input class="btn btn-primary btn-sm shadow-none p-2" type="submit" value="Publier"></div>                
+                        <div class="form-group row">
+                            <label for="captcha" class="col-sm-3 col-form-label">
+                                <img src="data:image/png;base64, <?= $captcha ?>" class="img-fluid" alt="Responsive image">
+                            </label>
+                            <div class="col-sm-4">
+                                <input type="number" class="form-control" id="captcha" name="captcha">
+                            </div>
+                        </div>
+                        <div class="mt-2 text-right">                            
+                            <input class="btn btn-primary btn-sm shadow-none p-2" type="submit" value="Publier">
+                        </div>                
             </form>
 
             <div id="container-comment-flash-messages" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
