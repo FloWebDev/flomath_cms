@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-center row">
         <div class="col-12">
 
-            <form class="bg-light p-2" id="comment-form" action="/post/<?= $post->getId() ?>/comment-create" method="POST">
+            <form class="bg-light p-2" id="comment-form" action="/post/<?= intval($post->getId()); ?>/comment-create" method="POST">
                         <div class="form-group row">
                             <label for="email" class="col-sm-3 col-form-label">Email <span class="require">*</span></label>
                             <div class="col-sm-9">
@@ -46,7 +46,8 @@
                     <?php foreach ($comments as $comment): ?>
                         <div class="bg-white p-2">
                             <div class="d-flex flex-row user-info"><img class="rounded-circle" src="<?= getGravatar(h($comment->getEmail())); ?>" width="50">
-                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold comment-name"><?= h($comment->getUsername()); ?></span><span class="comment-date text-black-50">Partagé le <?= $comment->getFormattedDate($comment->getCreatedAt()); ?></span></div>
+                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold comment-name"><?= h($comment->getUsername()); ?></span>
+                                <span class="comment-date text-black-50">Commenté le <?= h($comment->getFormattedDate($comment->getCreatedAt())); ?></span></div>
                             </div>
                             <div class="mt-2">
                                 <p class="comment-text"><?= nl2br(h($comment->getContent())); ?></p>
