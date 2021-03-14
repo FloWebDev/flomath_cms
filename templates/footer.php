@@ -32,7 +32,7 @@
             </a>
           </li>
         </ul>
-        <p class="copyright text-muted">Développé avec ❤️ et ☕ par Florian Mathevon - FloMath 2021-<?= date('Y'); ?></p>
+        <p class="copyright text-muted">Développé avec ❤️ et ☕ par Florian Mathevon - FloMath 2021-<?= date('Y'); ?> <a href="/login"><i class="fas fa-sign-in-alt"></i></a></p>
       </div>
     </div>
   </div>

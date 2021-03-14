@@ -5,10 +5,11 @@ session_start();
 use Core\Logger;
 use Core\AltoRouter;
 use Core\ErrorController;
-use App\Controller\FrontController\PostController as FPC;
 use App\Controller\BackController\PostController as BPC;
-use App\Controller\FrontController\CategoryController as FCC;
 use App\Controller\FrontController\TagController as FTC;
+use App\Controller\FrontController\PostController as FPC;
+use App\Controller\SecurityController\SecurityController as SC;
+use App\Controller\FrontController\CategoryController as FCC;
 use App\Controller\FrontController\CommentController as FCoC;
 
 class Application
@@ -43,6 +44,15 @@ class Application
      */
     private function createRoutes(): void
     {
+        // Security
+        $this->router->map('GET|POST', '/login', function () {
+            $inst = new SC();
+            $inst->login();
+        }, 'sign_in');
+        $this->router->map('GET|POST', '/logout', function () {
+            $inst = new SC();
+            $inst->logout();
+        }, 'sign_out');
         // FrontController
         $this->router->map('GET', '/', function () {
             $inst = new FPC();
@@ -65,6 +75,10 @@ class Application
             $inst->create($id);
         }, 'comment_create');
         // BackController
+        $this->router->map('GET', '/dashboard', function () {
+            $inst = new BPC();
+            $inst->dashboard();
+        }, 'dashboard');
         $this->router->map('GET|POST', '/post-create', function () {
             $inst = new BPC();
             $inst->create();

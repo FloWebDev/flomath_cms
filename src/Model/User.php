@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Core\SPDO;
 use Core\CoreModel;
 
 class User extends CoreModel
@@ -14,7 +15,35 @@ class User extends CoreModel
     private $bio;
     private $role_id;
 
+    /**
+     * Enables to get user by his username
+     */
+    public function findByUsername(string $username)
+    {
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE username = :username;";
     
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
+    
+        $pdoStatement->bindValue(':username', $username, \PDO::PARAM_STR);
+    
+        $pdoStatement->execute();
+    
+        return $pdoStatement->fetchObject(static::class);
+    }
+
+    /**
+     * Enables to get role of user
+     */
+    public function getRole()
+    {
+        $sql = "SELECT * FROM role WHERE id = " . $this->role_id;
+    
+        $pdoStatement = SPDO::getPDO()->query($sql);
+    
+        return $pdoStatement->fetchObject(static::class);
+    }
+
+
     // Getters / Setters
         
     /**

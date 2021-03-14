@@ -8,7 +8,7 @@ abstract class CoreModel
 {
     public static function findAll()
     {
-        $sql = "SELECT * FROM " . static::class::TABLE_NAME . ";";
+        $sql = "SELECT * FROM " . static::TABLE_NAME . ";";
 
         $pdoStatement = SPDO::getPDO()->query($sql);
 
@@ -17,7 +17,7 @@ abstract class CoreModel
 
     public static function findById($id)
     {
-        $sql = "SELECT * FROM " . static::class::TABLE_NAME . " WHERE id = :id;";
+        $sql = "SELECT * FROM " . static::TABLE_NAME . " WHERE id = :id;";
 
         $pdoStatement = SPDO::getPDO()->prepare($sql);
 

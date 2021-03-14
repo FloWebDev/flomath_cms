@@ -113,11 +113,11 @@ SELECT 2, 'ROLE_USER', 'utilisateur'
 WHERE NOT EXISTS (SELECT 1 FROM role WHERE id = 2);
 
 INSERT INTO app_user (id, username, email, password, bio, role_id)
-SELECT 1, 'admin', 'admin@admin.com', 'djshjdhfkddd12jqhf', '$bio', 1
+SELECT 1, 'admin', 'admin@admin.com', '" . password_hash("admin", PASSWORD_BCRYPT, ['cost' => 12]) . "', '$bio', 1
 WHERE NOT EXISTS (SELECT 1 FROM app_user WHERE id = 1);
 
 INSERT INTO app_user (id, username, email, password, bio, role_id)
-SELECT 2, 'user', 'user@user.com', 'djsh4643fsddskjqhf', '$bio', 2
+SELECT 2, 'user', 'user@user.com', '" . password_hash("user", PASSWORD_BCRYPT, ['cost' => 12]) . "', '$bio', 2
 WHERE NOT EXISTS (SELECT 1 FROM app_user WHERE id = 2);
 ";
 $pdo->exec($sql);

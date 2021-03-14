@@ -38,9 +38,21 @@ function getUri(): string
     return isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
 }
 
+/**
+ * Enables to quickly use php htmlspecialchars method
+ */
 function h(string $var)
 {
     return htmlspecialchars($var);
+}
+
+/**
+ * Enables to make a redirection
+ */
+function redirect(string $path)
+{
+    header('Location: ' . $path);
+    exit;
 }
 
 /**

@@ -7,6 +7,7 @@ use App\Model\Post;
 use App\Model\Comment;
 use Core\CaptchaService;
 use Core\CoreController;
+use Core\Logger;
 
 class CommentController extends CoreController
 {
@@ -40,6 +41,7 @@ class CommentController extends CoreController
         }
 
         if (!empty($error)) {
+            Logger::error('Commentaire non valide : ' . implode(' - ', $error));
             self::json400Render($error);
         }
 
