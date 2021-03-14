@@ -42,11 +42,11 @@ class Comment extends CoreModel
         }
 
         $pdoStatement =SPDO::getPDO()->prepare($sql);
-        $pdoStatement->bindValue(':username', htmlspecialchars($this->getUsername()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':email', htmlspecialchars($this->getEmail()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':content', htmlspecialchars($this->getContent()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':created_at', htmlspecialchars($this->getCreatedAt()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':post_id', intval($this->getPostId()), \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':username', $this->username, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':email', $this->email, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':content', $this->content, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':created_at', $this->created_at, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':post_id', $this->post_id, \PDO::PARAM_INT);
         $pdoStatement->execute();
 
         return $this;

@@ -48,17 +48,17 @@ class Post extends CoreModel
              created_at = :created_at, is_published = :is_published, nb_views = :nb_views, user_id = :user_id WHERE id = " . $this->id;
         }
 
-        $pdoStatement =SPDO::getPDO()->prepare($sql);
-        $pdoStatement->bindValue(':title', htmlspecialchars($this->getTitle()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':content', htmlspecialchars($this->getContent()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':description', htmlspecialchars($this->getDescription()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':slug', htmlspecialchars($this->getSlug()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':meta_description', htmlspecialchars($this->getMetaDescription()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':meta_keywords', htmlspecialchars($this->getMetaKeywords()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':created_at', htmlspecialchars($this->getCreatedAt()), \PDO::PARAM_STR);
-        $pdoStatement->bindValue(':is_published', intval($this->getIsPublished()), \PDO::PARAM_INT);
-        $pdoStatement->bindValue(':nb_views', intval($this->getNbViews()), \PDO::PARAM_INT);
-        $pdoStatement->bindValue(':user_id', intval($this->getUserId()), \PDO::PARAM_INT);
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
+        $pdoStatement->bindValue(':title', $this->title, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':content', $this->content, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':description', $this->description, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':slug', $this->slug, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':meta_description', $this->meta_description, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':meta_keywords', $this->meta_keywords, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':created_at', $this->created_at, \PDO::PARAM_STR);
+        $pdoStatement->bindValue(':is_published', $this->is_published, \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':nb_views', $this->nb_views, \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':user_id', $this->user_id, \PDO::PARAM_INT);
         $pdoStatement->execute();
 
         return $this;

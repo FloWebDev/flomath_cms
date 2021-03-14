@@ -30,7 +30,7 @@
                         </div>
                         <div class="mt-2 text-right">                            
                             <input class="btn btn-primary btn-sm shadow-none p-2" type="submit" value="Publier">
-                        </div>                
+                        </div>                 
             </form>
 
             <div id="container-comment-flash-messages" class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
@@ -45,11 +45,11 @@
                 <div class="d-flex flex-column comment-section">
                     <?php foreach ($comments as $comment): ?>
                         <div class="bg-white p-2">
-                            <div class="d-flex flex-row user-info"><img class="rounded-circle" src="<?= getGravatar($comment->getEmail()); ?>" width="50">
-                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold comment-name"><?= $comment->getUsername(); ?></span><span class="comment-date text-black-50">Partagé le <?= $comment->getFormattedDate($comment->getCreatedAt()); ?></span></div>
+                            <div class="d-flex flex-row user-info"><img class="rounded-circle" src="<?= getGravatar(h($comment->getEmail())); ?>" width="50">
+                                <div class="d-flex flex-column justify-content-start ml-2"><span class="d-block font-weight-bold comment-name"><?= h($comment->getUsername()); ?></span><span class="comment-date text-black-50">Partagé le <?= $comment->getFormattedDate($comment->getCreatedAt()); ?></span></div>
                             </div>
                             <div class="mt-2">
-                                <p class="comment-text"><?= nl2br($comment->getContent()); ?></p>
+                                <p class="comment-text"><?= nl2br(h($comment->getContent())); ?></p>
                             </div>
                         </div>
                     <?php endforeach; ?>

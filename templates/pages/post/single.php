@@ -5,9 +5,9 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
 
-          <h1 class="section-heading mt-0 mb-5"><?= $post->getTitle(); ?></h1>
+          <h1 class="section-heading mt-0 mb-5"><?= h($post->getTitle()); ?></h1>
 
-          <div class="mb-4"><?= nl2br($post->getContent()); ?></div>
+          <div class="mb-4"><?= nl2br(h($post->getContent())); ?></div>
 
           <hr>
 
@@ -19,11 +19,11 @@
           <!-- Section auteur -->
           <div class="row" id="bio-author">
             <div class="col-2 align-self-center">
-                <?= getGravatar($post->getUser()->getEmail(), 100, 'mp', 'g', true, ['title' => $post->getUser()->getUsername(), 'alt' => 'Avatar de ' . $post->getUser()->getUsername(), 'class' => 'card-img-top avatar']); ?>
+                <?= getGravatar(h($post->getUser()->getEmail()), 100, 'mp', 'g', true, ['title' => h($post->getUser()->getUsername()), 'alt' => 'Avatar de ' . h($post->getUser()->getUsername()), 'class' => 'card-img-top avatar']); ?>
             </div>
             <div class="col-10 card-body">
-                <h5 class="card-title"><?= $post->getUser()->getUsername(); ?></h5>
-                <p class="card-text"><?= $post->getUser()->getBio(); ?></p>
+                <h5 class="card-title"><?= h($post->getUser()->getUsername()); ?></h5>
+                <p class="card-text"><?= h($post->getUser()->getBio()); ?></p>
             </div>
         </div>
 

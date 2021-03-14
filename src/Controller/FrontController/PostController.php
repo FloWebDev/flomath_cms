@@ -25,7 +25,6 @@ class PostController extends CoreController
 
     public function read(int $id, string $slug)
     {
-        dd($_SERVER);
         $captcha = CaptchaService::generateCaptcha();
 
         $post    = new Post();

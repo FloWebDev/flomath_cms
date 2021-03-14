@@ -14,10 +14,12 @@ const app = {
 
         xhr.open('POST', e.target.getAttribute('action'), true);
         xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+        xhr.responseType = 'json'; // to avoid JSON.parse(xhr.response)
         xhr.onreadystatechange = () => {
+            console.log(xhr.response)
             if (xhr.readyState === 4) {
                 if (xhr.status >= 200 && xhr.status < 300) {
-                    const res = JSON.parse(xhr.response);
+                    const res = xhr.response;
                     if (res.success) {
                         e.target.reset();
                         app.handleSuccessCommentForm(res);
@@ -26,11 +28,10 @@ const app = {
                         }, 3000);
                     }
                 } else {
-                    app.handleErrorCommentForm(JSON.parse(xhr.response));
+                    app.handleErrorCommentForm(xhr.response);
                 }
             }
         };
-
         xhr.send(data); 
     },
     handleErrorCommentForm: (errors) => {

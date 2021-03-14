@@ -38,6 +38,11 @@ function getUri(): string
     return isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
 }
 
+function h(string $var)
+{
+    return htmlspecialchars($var);
+}
+
 /**
  * Get either a Gravatar URL or complete image tag for a specified email address.
  *
