@@ -2,6 +2,8 @@
 
 define('MODE', 'dev'); // dev/prod
 
+define('LANG', 'fr');
+
 define('BROWSER_SITE_TITLE', 'FloMath - Développement Web');
 define('SITE_TITLE', 'FloMath');
 define('SLOGAN', 'Sur la route du Développement Web');
@@ -17,5 +19,5 @@ define('FORMAT_DATE_SET', 'Y-m-d H:i:s.u');
 define('FORMAT_DATE_GET', 'd/m/Y à H\hi');
 define('EMAIL_INFO', 'Votre adresse email ne sera ni revendue ni communiquée à des tiers.');
 
-define('PAGINATOR_PAGE_RANGE', 3);
+define('PAGINATOR_PAGE_RANGE', 5);
 define('PAGINATOR_PAGE_NAME', 'page');

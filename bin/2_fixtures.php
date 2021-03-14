@@ -33,6 +33,22 @@ WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 6);
 INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
 SELECT 7, 'Article Exemple 7', '$contentMock', '$description', 'slug-article-7', '2021-01-07 12:00:17', 1, 1
 WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 7);
+
+INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
+SELECT 8, 'Article Exemple 8', '$contentMock', '$description', 'slug-article-8', '2021-01-08 12:00:17', 1, 1
+WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 8);
+
+INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
+SELECT 9, 'Article Exemple 9', '$contentMock', '$description', 'slug-article-9', '2021-01-09 12:00:17', 1, 1
+WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 9);
+
+INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
+SELECT 10, 'Article Exemple 10', '$contentMock', '$description', 'slug-article-10', '2021-01-10 12:00:17', 1, 1
+WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 10);
+
+INSERT INTO post (id, title, content, description, slug, created_at, is_published, user_id)
+SELECT 11, 'Article Exemple 11', '$contentMock', '$description', 'slug-article-11', '2021-01-11 12:11:17', 1, 1
+WHERE NOT EXISTS (SELECT 1 FROM post WHERE id = 11);
 ";
 
 $pdo->exec($sql);
@@ -113,6 +129,22 @@ WHERE NOT EXISTS (SELECT 1 FROM post_category WHERE post_id = 6 AND category_id 
 INSERT INTO post_category (post_id, category_id)
 SELECT 7, 2
 WHERE NOT EXISTS (SELECT 1 FROM post_category WHERE post_id = 7 AND category_id = 2);
+
+INSERT INTO post_category (post_id, category_id)
+SELECT 8, 1
+WHERE NOT EXISTS (SELECT 1 FROM post_category WHERE post_id = 8 AND category_id = 1);
+
+INSERT INTO post_category (post_id, category_id)
+SELECT 9, 1
+WHERE NOT EXISTS (SELECT 1 FROM post_category WHERE post_id = 9 AND category_id = 1);
+
+INSERT INTO post_category (post_id, category_id)
+SELECT 11, 2
+WHERE NOT EXISTS (SELECT 1 FROM post_category WHERE post_id = 11 AND category_id = 2);
+
+INSERT INTO post_category (post_id, category_id)
+SELECT 11, 3
+WHERE NOT EXISTS (SELECT 1 FROM post_category WHERE post_id = 11 AND category_id = 3);
 ";
 
 $pdo->exec($sql);
@@ -187,6 +219,30 @@ WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 7 AND tag_id = 3);
 INSERT INTO post_tag (post_id, tag_id) 
 SELECT 7, 5
 WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 7 AND tag_id = 5);
+
+INSERT INTO post_tag (post_id, tag_id) 
+SELECT 8, 5
+WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 8 AND tag_id = 5);
+
+INSERT INTO post_tag (post_id, tag_id) 
+SELECT 9, 5
+WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 9 AND tag_id = 5);
+
+INSERT INTO post_tag (post_id, tag_id) 
+SELECT 9, 5
+WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 9 AND tag_id = 5);
+
+INSERT INTO post_tag (post_id, tag_id) 
+SELECT 11, 5
+WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 11 AND tag_id = 5);
+
+INSERT INTO post_tag (post_id, tag_id) 
+SELECT 11, 2
+WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 11 AND tag_id = 2);
+
+INSERT INTO post_tag (post_id, tag_id) 
+SELECT 11, 3
+WHERE NOT EXISTS (SELECT 1 FROM post_tag WHERE post_id = 11 AND tag_id = 3);
 ";
 
 $pdo->exec($sql);

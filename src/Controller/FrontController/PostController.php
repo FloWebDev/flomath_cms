@@ -13,13 +13,13 @@ class PostController extends CoreController
 {
     public function list()
     {
-        $inst         = new Post();
-        $posts        = $inst ->findAllPublished();
+        $paginatorData = PaginatorService::getPaginator();
 
-        $paginatorTemplate = PaginatorService::getPaginatorTemplate();
+        $inst         = new Post();
+        $posts        = $inst ->findAllPublished($paginatorData['limit'], $paginatorData['offset'], 'DESC');
 
         $this->assign('posts', $posts);
-        $this->assign('paginatorTemplate', $paginatorTemplate);
+        $this->assign('paginatorTemplate', $paginatorData['html']);
         $this->render('pages/post/list');
     }
 

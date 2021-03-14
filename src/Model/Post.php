@@ -67,9 +67,11 @@ class Post extends CoreModel
     /**
      * Retourne la liste des posts publiés
      */
-    public function findAllPublished(): ?array
+    public function findAllPublished(int $limit = 100, int $offset = 0, string $order = 'ASC'): ?array
     {
-        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE is_published = 1 ORDER BY created_at DESC;";
+        $order = $order === 'ASC' ? $order : 'DESC';
+
+        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE is_published = 1 ORDER BY created_at $order LIMIT $limit OFFSET $offset;";
 
         $pdoStatement = SPDO::getPDO()->query($sql);
 

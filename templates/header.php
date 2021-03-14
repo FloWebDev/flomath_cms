@@ -4,7 +4,7 @@
     $author      = !empty($author) ? $author : META_AUTHOR;
 ?>
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="<?= LANG; ?>">
 
 <head>
 
