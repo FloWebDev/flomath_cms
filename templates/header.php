@@ -17,7 +17,7 @@
 
   <title><?= SITE_TITLE; ?></title>
 
-  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
 
   <!-- Bootstrap core CSS -->
   <link href="/assets/css/bootstrap/bootstrap.min.css" rel="stylesheet">
