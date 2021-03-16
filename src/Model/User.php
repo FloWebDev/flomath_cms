@@ -34,13 +34,13 @@ class User extends CoreModel
     /**
      * Enables to get role of user
      */
-    public function getRole()
+    public function getRole(): Role
     {
         $sql = "SELECT * FROM role WHERE id = " . $this->role_id;
     
         $pdoStatement = SPDO::getPDO()->query($sql);
     
-        return $pdoStatement->fetchObject(static::class);
+        return $pdoStatement->fetchObject(__NAMESPACE__ . '\Role');
     }
 
 

@@ -21,3 +21,5 @@ define('EMAIL_INFO', 'Votre adresse email ne sera ni revendue ni communiquée à
 
 define('PAGINATOR_PAGE_RANGE', 5);
 define('PAGINATOR_PAGE_NAME', 'page');
+
+define('STATS_VIEWS_NB_POSTS', 100);

@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="captcha" class="col-sm-3 col-form-label">
-                                <img src="data:image/png;base64, <?= $captcha ?>" class="img-fluid" alt="Responsive image">
+                                <img src="data:image/png;base64, <?= $captcha ?>" class="img-fluid" alt="captcha image">
                             </label>
                             <div class="col-sm-4">
                                 <input type="number" class="form-control" id="captcha" name="captcha">

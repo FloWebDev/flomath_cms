@@ -18,6 +18,7 @@ abstract class CoreController
         foreach ($this->params as $key => $value) {
             $$key = $value;
         }
+
         require __DIR__ . '/../templates/header.php';
         require __DIR__ . '/../templates/' . $namePage . '.php';
         require __DIR__ . '/../templates/footer.php';
@@ -31,6 +32,18 @@ abstract class CoreController
     {
         header('HTTP/1.0 404 Not Found');
         $string = "<p>Erreur 404 - La ressource demandée n'existe pas ou a été déplacée</p>";
+        $string .= "<p><a href=' / '>Retour à la page d'accueil</a></p>";
+        echo $string;
+        exit;
+    }
+
+    /**
+     * Render 403 view template
+     */
+    protected static function view403Render()
+    {
+        header('HTTP/1.0 403 Forbidden');
+        $string = "<p>Erreur 403 - Accès refusé</p>";
         $string .= "<p><a href=' / '>Retour à la page d'accueil</a></p>";
         echo $string;
         exit;

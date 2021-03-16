@@ -82,3 +82,12 @@ function getGravatar($email, $s = 80, $d = 'mp', $r = 'g', $img = false, $atts =
 
     return $url;
 }
+
+/**
+ * Return a formatted date
+ */
+function getFormattedDate(string $date): string
+{
+    $date = new DateTime($date);
+    return $date->format(FORMAT_DATE_GET);
+}

@@ -52,6 +52,8 @@ class CommentController extends CoreController
         $comment->setPostId($postId);
         $comment->save();
 
+        Logger::info('Nouveau commentaire créé par ' . $comment->getUsername());
+
         self::json201Render(['code' => 201, 'success' => true, 'message' => 'Commentaire créé avec succès']);
     }
 }

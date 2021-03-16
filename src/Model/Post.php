@@ -111,6 +111,16 @@ class Post extends CoreModel
         return $inst->findAllByPostId($this->id);
     }
 
+    public function getViewsStats(int $limit)
+    {
+        $sql = "SELECT id, slug, title, nb_views, created_at FROM " . self::TABLE_NAME . " 
+        ORDER BY nb_views DESC, created_at DESC LIMIT " . intval($limit) . ";";
+
+        $pdoStatement = SPDO::getPDO()->query($sql);
+
+        return $pdoStatement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     // Getters / Setters
 
     /**

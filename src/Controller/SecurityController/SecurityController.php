@@ -52,7 +52,7 @@ class SecurityController extends CoreController
      */
     public function logout()
     {
-        unset($_SESSION['sess']);
+        SecurityService::closeSession();
         Logger::info('Déconnexion');
         redirect('/');
     }

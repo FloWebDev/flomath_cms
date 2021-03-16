@@ -11,6 +11,11 @@ class ErrorController extends CoreController
         parent::view404Render();
     }
 
+    public static function view403Render()
+    {
+        parent::view403Render();
+    }
+
     public static function json404Render(array $data)
     {
         parent::json404Render($data);
