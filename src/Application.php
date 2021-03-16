@@ -62,13 +62,13 @@ class Application
             $inst = new FPC();
             $inst->read($id, $slug);
         }, 'single_post');
-        $this->router->map('GET', '/category/[i:id]', function ($id) {
+        $this->router->map('GET', '/category/[i:id]/[s:slug]', function ($id, $slug) {
             $inst = new FCC();
-            $inst->categoryList($id);
+            $inst->categoryList($id, $slug);
         }, 'category_post_list');
-        $this->router->map('GET', '/tag/[i:id]', function ($id) {
+        $this->router->map('GET', '/tag/[i:id]/[s:slug]', function ($id, $slug) {
             $inst = new FTC();
-            $inst->tagList($id);
+            $inst->tagList($id, $slug);
         }, 'category_tag_list');
         $this->router->map('POST', '/post/[i:id]/comment-create', function ($id) {
             $inst = new FCoC();

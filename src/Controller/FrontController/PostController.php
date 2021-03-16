@@ -25,10 +25,8 @@ class PostController extends CoreController
 
     public function read(int $id, string $slug)
     {
-        $captcha = CaptchaService::generateCaptcha();
-
-        $post    = new Post();
-        $post    = $post->findByIdAndSlug($id, $slug);
+        $inst     = new Post();
+        $post     = $inst->findByIdAndSlug($id, $slug);
 
         if (!$post) {
             ErrorController::view404Render();
@@ -36,6 +34,8 @@ class PostController extends CoreController
 
         $post->setNbViews($post->getNbViews() + 1);
         $post->save();
+
+        $captcha = CaptchaService::generateCaptcha();
   
         $this->assign('post', $post);
         $this->assign('captcha', $captcha);

@@ -33,4 +33,18 @@ abstract class CoreModel
         $date = new DateTime($date);
         return $date->format(FORMAT_DATE_GET);
     }
+
+    public function findByIdAndSlug(int $id, string $slug)
+    {
+        $sql = "SELECT * FROM " . static::TABLE_NAME . " WHERE id = :id AND slug = :slug;";
+
+        $pdoStatement = SPDO::getPDO()->prepare($sql);
+
+        $pdoStatement->bindValue(':id', $id, \PDO::PARAM_INT);
+        $pdoStatement->bindValue(':slug', $slug, \PDO::PARAM_STR);
+
+        $pdoStatement->execute();
+
+        return $pdoStatement->fetchObject(static::class);
+    }
 }

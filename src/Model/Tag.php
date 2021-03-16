@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Core\SPDO;
+// use App\Model\Post;
 use Core\CoreModel;
 
 class Tag extends CoreModel
@@ -10,6 +11,7 @@ class Tag extends CoreModel
     const TABLE_NAME = 'tag';
     private $id;
     private $name;
+    private $slug;
 
     public function findAllByPostId(int $id)
     {
@@ -22,6 +24,24 @@ class Tag extends CoreModel
         $pdoStatement->execute();
 
         return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, static::class);
+    }
+
+    /**
+     * Returns all publlished posts for a tad id
+     */
+    public function findAllPublishedPosts(int $limit = 100, int $offset = 0, string $order = 'ASC'): ?array
+    {
+        $order = $order === 'ASC' ? $order : 'DESC';
+
+        $sql = "SELECT post.* FROM " . self::TABLE_NAME . " 
+        JOIN post_tag ON tag.id = post_tag.tag_id
+        JOIN post ON post_tag.post_id = post.id
+        WHERE post.is_published = 1 AND tag.id = " . $this->id . " 
+        ORDER BY created_at $order LIMIT $limit OFFSET $offset;";
+
+        $pdoStatement = SPDO::getPDO()->query($sql);
+
+        return $pdoStatement->fetchAll(\PDO::FETCH_CLASS, __NAMESPACE__ . '\Post');
     }
     
     // Getters / Setters
@@ -62,6 +82,26 @@ class Tag extends CoreModel
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of slug
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set the value of slug
+     *
+     * @return  self
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
 
         return $this;
     }

@@ -2,12 +2,12 @@
     <div class="col-sm-10 p-0">
         <?php if (!empty($post->getCategories())): ?>
             <?php foreach ($post->getCategories() as $category): ?>
-            <a href="category/<?= intval($category->getId()); ?>" class="badge badge-dark"><?= h($category->getName()); ?></a>
+            <a href="/category/<?= intval($category->getId()); ?>/<?= h($category->getSlug()); ?>" class="badge badge-dark"><?= h($category->getName()); ?></a>
             <?php endforeach; ?>
         <?php endif; ?>
         <?php if (!empty($post->getTags())): ?>
             <?php foreach ($post->getTags() as $tag): ?>
-            <a href="tag/<?= intval($tag->getId()); ?>" class="badge badge-light"><?= h($tag->getName()); ?></a>
+            <a href="/tag/<?= intval($tag->getId()); ?>/<?= h($tag->getSlug()); ?>" class="badge badge-light"><?= h($tag->getName()); ?></a>
             <?php endforeach; ?>
         <?php endif; ?>
     </div>

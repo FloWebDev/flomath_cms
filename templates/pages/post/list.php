@@ -3,6 +3,13 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+
+      <!-- Context -->
+      <?php if (!empty($context)):?>
+      <p class="h1"><?= $context; ?></p>
+      <?php endif; ?>
+
+      <!-- posts list -->
       <?php if (!empty($posts)): ?>
           <?php foreach ($posts as $index => $post): ?>
             <div class="post-preview">
@@ -34,13 +41,14 @@
             </div>
             <hr>
             <?php endforeach; ?>
-            <!-- Pager -->
-            <?= $paginatorTemplate; ?>
         <?php else: ?>
-          <div class="post-preview">
+          <div class="post-preview mb-5">
             Aucun élément à afficher.
           </div>
         <?php endif; ?>
+
+        <!-- Pager -->
+        <?= $paginatorTemplate; ?>
       </div>
     </div>
   </div>

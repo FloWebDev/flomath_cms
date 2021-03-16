@@ -81,16 +81,16 @@ $pdo->exec($sql);
 
 // Categories
 $sql = "
-INSERT INTO category (id, name)
-SELECT 1, 'Développement Web'
+INSERT INTO category (id, name, slug)
+SELECT 1, 'Développement Web', 'developpement-web'
 WHERE NOT EXISTS (SELECT 1 FROM category WHERE id = 1);
 
-INSERT INTO category (id, name)
-SELECT 2, 'Internet'
+INSERT INTO category (id, name, slug)
+SELECT 2, 'Internet', 'internet'
 WHERE NOT EXISTS (SELECT 1 FROM category WHERE id = 2);
 
-INSERT INTO category (id, name)
-SELECT 3, 'Poker'
+INSERT INTO category (id, name, slug)
+SELECT 3, 'Poker', 'poker'
 WHERE NOT EXISTS (SELECT 1 FROM category WHERE id = 3);
 ";
 
@@ -151,24 +151,24 @@ $pdo->exec($sql);
 
 // Tags
 $sql = "
-INSERT INTO tag (id, name)
-SELECT 1, 'HTML'
+INSERT INTO tag (id, name, slug)
+SELECT 1, 'HTML', 'html'
 WHERE NOT EXISTS (SELECT 1 FROM tag WHERE id = 1);
 
-INSERT INTO tag (id, name)
-SELECT 2, 'CSS'
+INSERT INTO tag (id, name, slug)
+SELECT 2, 'CSS', 'css'
 WHERE NOT EXISTS (SELECT 1 FROM tag WHERE id = 2);
 
-INSERT INTO tag (id, name)
-SELECT 3, 'PHP'
+INSERT INTO tag (id, name, slug)
+SELECT 3, 'PHP', 'php'
 WHERE NOT EXISTS (SELECT 1 FROM tag WHERE id = 3);
 
-INSERT INTO tag (id, name)
-SELECT 4, 'JS'
+INSERT INTO tag (id, name, slug)
+SELECT 4, 'JS', 'java-script'
 WHERE NOT EXISTS (SELECT 1 FROM tag WHERE id = 4);
 
-INSERT INTO tag (id, name)
-SELECT 5, 'SQL'
+INSERT INTO tag (id, name, slug)
+SELECT 5, 'SQL', 'sql'
 WHERE NOT EXISTS (SELECT 1 FROM tag WHERE id = 5);
 ";
 

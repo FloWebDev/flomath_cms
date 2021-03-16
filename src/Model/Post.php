@@ -20,20 +20,6 @@ class Post extends CoreModel
     private $nb_views;
     private $user_id;
     
-    public function findByIdAndSlug(int $id, string $slug): Post | bool
-    {
-        $sql = "SELECT * FROM " . self::TABLE_NAME . " WHERE id = :id AND slug = :slug;";
-
-        $pdoStatement = SPDO::getPDO()->prepare($sql);
-
-        $pdoStatement->bindValue(':id', $id, \PDO::PARAM_INT);
-        $pdoStatement->bindValue(':slug', $slug, \PDO::PARAM_STR);
-
-        $pdoStatement->execute();
-
-        return $pdoStatement->fetchObject(static::class);
-    }
-
     public function save()
     {
         if (is_null($this->id)) {
