@@ -13,7 +13,7 @@
       <?php if (!empty($posts)): ?>
           <?php foreach ($posts as $index => $post): ?>
             <div class="post-preview">
-              <a href="post/<?= $post->getId(); ?>/<?= h($post->getSlug()); ?>">
+              <a href="/post/<?= $post->getId(); ?>/<?= h($post->getSlug()); ?>">
               <!-- Title -->
                 <h2 class="post-title">
                   <?= h($post->getTitle()); ?>
